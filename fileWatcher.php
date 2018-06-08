@@ -95,8 +95,18 @@ function updateProducts($logger, $database){
              * y la unidad entones aqui extraigo dichos datos
              */
             $tituloApli = explode(".", $record['descripcion']);
-            $aplMarca = explode("/", $tituloApli[1]);
-            $marcaUnd = explode("_", $aplMarca[1]);
+            if ( isset($tituloApli[1]) ) {
+                $aplMarca = explode("/", $tituloApli[1]);
+            } else {
+                $aplMarca = "";
+                echo "producto_falla ".$record['codigo']."\n";
+            }
+            if ( isset($aplMarca[1]) ) {
+                $marcaUnd = explode("_", $aplMarca[1]);
+            } else {
+                $marcaUnd = "";
+                echo "producto_falla ".$record['codigo']."\n";
+            }
 
             $producto = [
                 "_id"         => $record['codigo'],
