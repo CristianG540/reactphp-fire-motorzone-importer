@@ -19,7 +19,7 @@ $logger->info('Inicio Script');
 echo 'Inicio Script';
 
 // FIREBASE
-$serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/firestore-test-1-todo-firebase-adminsdk-wzads-030e47b3cf.json');
+$serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/motorzone-efef6-firebase-adminsdk-thfle-d2d5a6b23b.json');
 $firebase = (new Factory)
     ->withServiceAccount($serviceAccount)
     ->create();
@@ -50,7 +50,7 @@ function updateProducts($logger, $database){
     * Con este comando uso git diff para comparar los archivos csv y sacar solo los
     * productos que se modificaron
     */
-    $command = "git diff --no-index --color=always old-files/oldProds.csv /var/www/html/reactphp-couchdb-importer/observados/product.txt |perl -wlne 'print $1 if /^\e\[32m\+\e\[m\e\[32m(.*)\e\[m$/' > onlyModifiedProds.csv ";
+    $command = "git diff --no-index --color=always old-files/oldProds.csv /var/www/html/reactphp-couchdb-importer/observados/product_motozone.txt |perl -wlne 'print $1 if /^\e\[32m\+\e\[m\e\[32m(.*)\e\[m$/' > onlyModifiedProds.csv ";
     $output = shell_exec($command);
 
     /*
@@ -72,7 +72,7 @@ function updateProducts($logger, $database){
     * Copio el archivo csv con los productos nuevos a la carpeta de comparacion para
     * compararlos la proxima vez que se ejecute el cron
     */
-    $command = "cp /var/www/html/reactphp-couchdb-importer/observados/product.txt old-files/oldProds.csv";
+    $command = "cp /var/www/html/reactphp-couchdb-importer/observados/product_motozone.txt old-files/oldProds.csv";
     $output = shell_exec($command);
 
     try {
@@ -159,7 +159,7 @@ $inotify->on(IN_CLOSE_WRITE, function ($path) use($logger, $database) {
     echo '***********************************************************************************';
     echo 'File closed after writing: '.$path.PHP_EOL;
 
-    if($path == "/var/www/html/reactphp-couchdb-importer/observados/product.txt"){
+    if($path == "/var/www/html/reactphp-couchdb-importer/observados/product_motozone.txt"){
         updateProducts($logger, $database);
     }
 
