@@ -102,7 +102,7 @@ function updateProducts($logger, $database){
                 "_id"         => $record['codigo'],
                 "titulo"      => utf8_encode($tituloApli[0]),
                 "aplicacion"  => $aplMarca[0],
-                "imagen"      => "https://www.igbcolombia.com/img_app/{$record['codigo']}.jpg",
+                "imagen"      => "https://www.igbcolombia.com/img_app_motozone/{$record['codigo']}.jpg",
                 "categoria"   => null,
                 "marcas"      => $marcaUnd[0],
                 "unidad"      => $marcaUnd[1],
