@@ -110,12 +110,12 @@ function updateProducts($logger, $database){
 
             $producto = [
                 "_id"         => $record['codigo'],
-                "titulo"      => utf8_encode($tituloApli[0]),
-                "aplicacion"  => $aplMarca[0],
+                "titulo"      => utf8_encode(isset($tituloApli[0]) ? $tituloApli[0] : ''),
+                "aplicacion"  => isset($aplMarca[0]) ? $aplMarca[0] : '-',
                 "imagen"      => "https://www.igbcolombia.com/img_app_motozone/{$record['codigo']}.jpg",
                 "categoria"   => null,
-                "marcas"      => $marcaUnd[0],
-                "unidad"      => $marcaUnd[1],
+                "marcas"      => isset($marcaUnd[0]) ? $marcaUnd[0] : '-',
+                "unidad"      => isset($marcaUnd[1]) ? $marcaUnd[1] : '-',
                 "existencias" => intval($record['cantInventario']),
                 "precio"      => intval($record['precio1'])
             ];
